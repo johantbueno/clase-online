@@ -908,6 +908,7 @@
     <a class="nav-tab" href="#actividad">Actividad</a>
     <a class="nav-tab" href="#evaluacion">Evaluacion</a>
     <a class="nav-tab" href="#recursos">Recursos</a>
+    <a class="nav-tab" href="#presentacion" style="color:#7c3aed; font-weight:700;">&#9654; Presentación</a>
   </div>
 </nav>
 
@@ -1643,6 +1644,21 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
 
+    <!-- LANZADOR DE PRESENTACIÓN -->
+    <div class="sidebar-card" style="background:linear-gradient(135deg,#4c1d95,#6d28d9); border:none; overflow:hidden; position:relative;">
+      <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+      <div style="position:absolute;bottom:-30px;left:-10px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
+      <div class="sidebar-body" style="position:relative;z-index:1;text-align:center;padding:22px 18px;">
+        <div style="font-size:36px;margin-bottom:10px;">&#127912;</div>
+        <div style="font-size:15px;font-weight:700;color:white;margin-bottom:6px;">Ver Presentación</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:16px;line-height:1.5;">8 diapositivas · Modo pantalla completa · Teclas de flecha</div>
+        <button onclick="abrirPresentacion()" style="width:100%;padding:11px;background:white;color:#6d28d9;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 4px 14px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          &#9654; Iniciar presentación
+        </button>
+        <a href="#presentacion" style="display:block;margin-top:10px;font-size:12px;color:rgba(255,255,255,0.7);text-decoration:none;">o ver en la página</a>
+      </div>
+    </div>
+
     <div class="sidebar-card">
       <div class="sidebar-header">Conceptos Clave</div>
       <div class="sidebar-body">
@@ -1735,6 +1751,89 @@
   </aside>
 </main>
 
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SECCIÓN PRESENTACIÓN EMBEBIDA                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="presentacion" style="max-width:1000px;margin:0 auto 40px;padding:0 20px;">
+  <div style="background:white;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);overflow:hidden;">
+
+    <!-- Header sección -->
+    <div style="background:linear-gradient(135deg,#4c1d95,#6d28d9);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Presentación Interactiva</div>
+        <div style="font-size:18px;font-weight:700;color:white;">Ley 107-13 — Diapositivas</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span id="slideCounter" style="font-size:13px;color:rgba(255,255,255,0.75);padding:6px 12px;background:rgba(255,255,255,0.15);border-radius:20px;">1 / 8</span>
+        <button onclick="abrirPresentacion()" style="padding:8px 16px;background:white;color:#6d28d9;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">
+          &#9654; Pantalla Completa
+        </button>
+      </div>
+    </div>
+
+    <!-- Viewport de la diapositiva -->
+    <div style="position:relative;background:#0f0f1a;padding:8px;">
+      <div id="slideViewport" style="position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:8px;">
+        <div id="slideStage" style="position:absolute;inset:0;"></div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div style="padding:14px 20px;background:#f8f9fa;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+
+      <!-- Barra de miniaturas -->
+      <div id="thumbStrip" style="display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none;"></div>
+
+      <!-- Botones nav -->
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button onclick="slidePrev()" style="width:36px;height:36px;border-radius:50%;background:var(--azul);color:white;border:none;font-size:16px;cursor:pointer;" title="Anterior">&#8592;</button>
+        <button onclick="slideNext()" style="width:36px;height:36px;border-radius:50%;background:var(--azul);color:white;border:none;font-size:16px;cursor:pointer;" title="Siguiente">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- Barra progreso -->
+    <div style="height:4px;background:#e2e8f0;">
+      <div id="slideProgress" style="height:100%;background:linear-gradient(90deg,#6d28d9,#c084fc);transition:width 0.4s;width:12.5%;"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- MODAL PANTALLA COMPLETA                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="presentModal" style="display:none;position:fixed;inset:0;background:#0a0a14;z-index:9000;flex-direction:column;">
+
+  <!-- Modal top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(0,0,0,0.5);flex-shrink:0;">
+    <div style="font-size:14px;color:rgba(255,255,255,0.7);">Johan Tapia, PhD · Ley 107-13</div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span id="modalCounter" style="font-size:13px;color:rgba(255,255,255,0.6);">1 / 8</span>
+      <button onclick="cerrarPresentacion()" style="padding:7px 16px;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:6px;cursor:pointer;font-size:13px;">✕ Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Slide área modal -->
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:16px;position:relative;">
+    <div id="modalStage" style="width:100%;max-width:1100px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);"></div>
+
+    <!-- Flechas laterales -->
+    <button onclick="slidePrev()" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:20px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8592;</button>
+    <button onclick="slideNext()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:20px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&#8594;</button>
+  </div>
+
+  <!-- Miniaturas modal -->
+  <div style="padding:10px 20px 14px;background:rgba(0,0,0,0.4);flex-shrink:0;">
+    <div id="modalThumbStrip" style="display:flex;gap:8px;overflow-x:auto;justify-content:center;scrollbar-width:none;"></div>
+  </div>
+
+  <!-- Progress modal -->
+  <div style="height:3px;background:rgba(255,255,255,0.1);flex-shrink:0;">
+    <div id="modalProgress" style="height:100%;background:linear-gradient(90deg,#6d28d9,#c084fc);transition:width 0.4s;width:12.5%;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
 <!-- FOOTER -->
 <footer style="background:var(--azul); color:rgba(255,255,255,0.8); padding:0; margin-top:40px;">
 
@@ -1941,6 +2040,366 @@
       this.style.borderColor = 'var(--azul-claro)';
     });
   });
+</script>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PRESENTADOR DE DIAPOSITIVAS            -->
+<!-- ═══════════════════════════════════════ -->
+<script>
+// ─── DATOS DE LAS DIAPOSITIVAS ────────────────────────────────────────────────
+const SLIDES = [
+  {
+    bg: 'linear-gradient(135deg, #0f2744 0%, #1a3a5c 50%, #2563a8 100%)',
+    accent: '#c9a227',
+    type: 'cover',
+    content: `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:6% 8%;position:relative;">
+        <div style="position:absolute;top:0;right:0;width:35%;height:100%;background:linear-gradient(135deg,rgba(201,162,39,0.12),transparent);border-radius:0;"></div>
+        <div style="font-size:clamp(9px,1.4vw,13px);letter-spacing:3px;text-transform:uppercase;color:rgba(201,162,39,0.9);margin-bottom:clamp(8px,2vh,18px);font-weight:600;">República Dominicana · Derecho Administrativo</div>
+        <div style="font-size:clamp(18px,3.8vw,42px);font-weight:800;color:white;line-height:1.15;margin-bottom:clamp(8px,2vh,18px);">Derechos y Deberes<br><span style="color:#c9a227;">ante la Administración Pública</span></div>
+        <div style="width:60px;height:3px;background:#c9a227;margin:0 auto clamp(10px,2.5vh,22px);border-radius:2px;"></div>
+        <div style="font-size:clamp(10px,1.6vw,16px);color:rgba(255,255,255,0.75);max-width:520px;line-height:1.6;">Ley No. 107-13 · Análisis académico · Principios, derechos, deberes y procedimiento administrativo</div>
+        <div style="margin-top:clamp(16px,4vh,36px);display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+          <div style="padding:6px 14px;background:rgba(201,162,39,0.2);border:1px solid rgba(201,162,39,0.5);border-radius:20px;color:#c9a227;font-size:clamp(9px,1.2vw,12px);font-weight:600;">Nivel Intermedio</div>
+          <div style="padding:6px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:rgba(255,255,255,0.8);font-size:clamp(9px,1.2vw,12px);">25 minutos</div>
+          <div style="padding:6px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:rgba(255,255,255,0.8);font-size:clamp(9px,1.2vw,12px);">8 diapositivas</div>
+        </div>
+        <div style="position:absolute;bottom:5%;right:6%;font-size:clamp(9px,1.1vw,12px);color:rgba(255,255,255,0.4);">Johan Tapia, PhD</div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #1e3a5f 0%, #2d5f8a 100%)',
+    accent: '#60a5fa',
+    type: 'context',
+    content: `
+      <div style="display:flex;height:100%;padding:5% 6%;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#60a5fa;margin-bottom:clamp(6px,1.5vh,14px);">Módulo 1</div>
+          <div style="font-size:clamp(16px,2.8vw,30px);font-weight:800;color:white;line-height:1.2;margin-bottom:clamp(10px,2vh,20px);">Contexto<br>y Marco Legal</div>
+          <div style="width:40px;height:3px;background:#60a5fa;margin-bottom:clamp(10px,2vh,20px);border-radius:2px;"></div>
+          <div style="display:flex;flex-direction:column;gap:clamp(6px,1.2vh,12px);">
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1e3a5f;flex-shrink:0;margin-top:1px;">✓</div>
+              <p style="font-size:clamp(9px,1.4vw,14px);color:rgba(255,255,255,0.88);line-height:1.5;">Promulgada el <strong style="color:#60a5fa;">8 de agosto de 2013</strong> — Gaceta Oficial No. 10722</p>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1e3a5f;flex-shrink:0;margin-top:1px;">✓</div>
+              <p style="font-size:clamp(9px,1.4vw,14px);color:rgba(255,255,255,0.88);line-height:1.5;">Regula los <strong style="color:#60a5fa;">derechos y deberes</strong> en las relaciones con la Administración Pública</p>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1e3a5f;flex-shrink:0;margin-top:1px;">✓</div>
+              <p style="font-size:clamp(9px,1.4vw,14px);color:rgba(255,255,255,0.88);line-height:1.5;">Base: <strong style="color:#60a5fa;">Art. 22 y Art. 138</strong> de la Constitución Dominicana</p>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1e3a5f;flex-shrink:0;margin-top:1px;">✓</div>
+              <p style="font-size:clamp(9px,1.4vw,14px);color:rgba(255,255,255,0.88);line-height:1.5;">Introduce el <strong style="color:#60a5fa;">derecho a la buena administración</strong> como derecho subjetivo</p>
+            </div>
+          </div>
+        </div>
+        <div style="width:36%;display:flex;align-items:center;justify-content:center;padding-left:4%;">
+          <div style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.3);border-radius:12px;padding:20px;text-align:center;">
+            <div style="font-size:clamp(28px,5vw,52px);font-weight:900;color:#60a5fa;line-height:1;">107-13</div>
+            <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.6);margin-top:6px;">Ley No.</div>
+            <div style="width:40px;height:1px;background:rgba(96,165,250,0.4);margin:12px auto;"></div>
+            <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.6);">2013</div>
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #1a2744 0%, #2d3561 100%)',
+    accent: '#a78bfa',
+    type: 'principios',
+    content: `
+      <div style="display:flex;flex-direction:column;height:100%;padding:4% 6%;">
+        <div style="margin-bottom:clamp(8px,2vh,18px);">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#a78bfa;margin-bottom:4px;">Módulo 2</div>
+          <div style="font-size:clamp(14px,2.4vw,26px);font-weight:800;color:white;">8 Principios de la Actuación Administrativa</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,1.2vh,10px);flex:1;">
+          ${[
+            ['Juridicidad','Toda actuación se somete al ordenamiento jurídico'],
+            ['Servicio Objetivo','Respeto a los derechos fundamentales, sin parcialidades'],
+            ['Promocional','Crea condiciones de libertad e igualdad real'],
+            ['Racionalidad','Motivación y argumentación en toda actuación'],
+            ['Igualdad de Trato','Misma situación = mismo trato, con motivación explícita'],
+            ['Eficacia','Remoción de oficio de obstáculos procedimentales'],
+            ['Transparencia','Actuaciones públicas y accesibles al ciudadano'],
+            ['Coordinación','Colaboración entre todos los órganos del Estado'],
+          ].map(([t,d],i) => `
+            <div style="background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);border-radius:8px;padding:clamp(6px,1.2vh,12px) clamp(8px,1.2vw,14px);display:flex;align-items:flex-start;gap:8px;">
+              <div style="width:20px;height:20px;border-radius:50%;background:#a78bfa;color:#1a2744;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">${i+1}</div>
+              <div><div style="font-size:clamp(9px,1.3vw,13px);font-weight:700;color:#c4b5fd;margin-bottom:2px;">${t}</div><div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.65);line-height:1.4;">${d}</div></div>
+            </div>`).join('')}
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #14352a 0%, #1a5c42 100%)',
+    accent: '#34d399',
+    type: 'derechos',
+    content: `
+      <div style="display:flex;height:100%;padding:4% 6%;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-right:4%;">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#34d399;margin-bottom:6px;">Módulo 3 · Art. 4</div>
+          <div style="font-size:clamp(14px,2.4vw,26px);font-weight:800;color:white;margin-bottom:clamp(8px,2vh,16px);">Derechos de<br>las Personas</div>
+          <div style="width:36px;height:3px;background:#34d399;margin-bottom:clamp(10px,2vh,18px);border-radius:2px;"></div>
+          <div style="display:flex;flex-direction:column;gap:clamp(5px,1vh,9px);">
+            ${[
+              'Tutela administrativa efectiva',
+              'Motivación de actuaciones administrativas',
+              'Resolución en plazo razonable',
+              'Resolución justa de actuaciones',
+              'Presentar peticiones por escrito',
+              'Respuesta oportuna y eficaz',
+            ].map((d,i) => `
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:18px;height:18px;border-radius:50%;background:rgba(52,211,153,0.25);border:1px solid #34d399;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <div style="width:6px;height:6px;border-radius:50%;background:#34d399;"></div>
+                </div>
+                <span style="font-size:clamp(9px,1.3vw,13px);color:rgba(255,255,255,0.88);">${d}</span>
+              </div>`).join('')}
+            <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(52,211,153,0.7);margin-top:4px;font-style:italic;">+ 6 derechos adicionales en el Art. 4...</div>
+          </div>
+        </div>
+        <div style="width:38%;display:flex;flex-direction:column;gap:clamp(6px,1.2vh,10px);justify-content:center;">
+          ${[
+            ['12+','derechos consagrados'],
+            ['Art. 4','de la Ley 107-13'],
+            ['100%','exigibles al Estado'],
+          ].map(([n,l]) => `
+            <div style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);border-radius:10px;padding:clamp(10px,2vh,18px);text-align:center;">
+              <div style="font-size:clamp(20px,3.5vw,36px);font-weight:900;color:#34d399;line-height:1;">${n}</div>
+              <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.6);margin-top:4px;">${l}</div>
+            </div>`).join('')}
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #3a1a0f 0%, #7c2d12 100%)',
+    accent: '#fb923c',
+    type: 'deberes',
+    content: `
+      <div style="display:flex;flex-direction:column;height:100%;padding:4% 6%;">
+        <div style="margin-bottom:clamp(8px,2vh,18px);">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#fb923c;margin-bottom:4px;">Módulo 4</div>
+          <div style="font-size:clamp(14px,2.4vw,26px);font-weight:800;color:white;">Deberes de las Personas ante la Administración</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.5vh,14px);flex:1;align-items:center;">
+          ${[
+            ['⚖️','Cumplir el ordenamiento jurídico','Respetar la Constitución, las leyes y el marco normativo vigente'],
+            ['🤝','Actuar de buena fe','Abstenerse de maniobras dilatorias o declaraciones falsas en procedimientos'],
+            ['🎯','Ejercer derechos con responsabilidad','Evitar la reiteración de solicitudes improcedentes o abusivas'],
+            ['🙏','Trato respetuoso','Mantener conducta respetuosa con el personal al servicio del Estado'],
+            ['📋','Colaborar en procedimientos','Cumplir las obligaciones previstas en la ley para la tramitación'],
+          ].map(([ic,t,d]) => `
+            <div style="background:rgba(251,146,60,0.12);border:1px solid rgba(251,146,60,0.25);border-radius:10px;padding:clamp(8px,1.5vh,14px);display:flex;align-items:flex-start;gap:10px;">
+              <span style="font-size:clamp(16px,2.2vw,22px);flex-shrink:0;margin-top:1px;">${ic}</span>
+              <div>
+                <div style="font-size:clamp(9px,1.3vw,13px);font-weight:700;color:#fb923c;margin-bottom:3px;">${t}</div>
+                <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.7);line-height:1.4;">${d}</div>
+              </div>
+            </div>`).join('')}
+          <div style="background:rgba(251,146,60,0.08);border:2px dashed rgba(251,146,60,0.3);border-radius:10px;padding:clamp(8px,1.5vh,14px);display:flex;align-items:center;justify-content:center;text-align:center;">
+            <div>
+              <div style="font-size:clamp(16px,2.5vw,26px);font-weight:900;color:#fb923c;">5</div>
+              <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.6);margin-top:2px;">deberes ciudadanos</div>
+            </div>
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #1a0a2e 0%, #3b1278 100%)',
+    accent: '#c084fc',
+    type: 'actos',
+    content: `
+      <div style="display:flex;flex-direction:column;height:100%;padding:4% 6%;">
+        <div style="margin-bottom:clamp(8px,2vh,16px);">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#c084fc;margin-bottom:4px;">Módulo 5</div>
+          <div style="font-size:clamp(14px,2.4vw,26px);font-weight:800;color:white;">Actos Administrativos</div>
+        </div>
+        <div style="background:rgba(192,132,252,0.1);border:1px solid rgba(192,132,252,0.25);border-radius:10px;padding:clamp(8px,1.5vh,14px);margin-bottom:clamp(8px,1.5vh,14px);">
+          <div style="font-size:clamp(8px,1.1vw,11px);color:#c084fc;font-weight:600;margin-bottom:5px;">DEFINICIÓN LEGAL</div>
+          <p style="font-size:clamp(9px,1.3vw,13px);color:rgba(255,255,255,0.85);line-height:1.5;font-style:italic;">"Toda declaración unilateral de voluntad, juicio o conocimiento realizada en ejercicio de función administrativa que produce efectos jurídicos directos, individuales e inmediatos frente a terceros."</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.5vh,12px);flex:1;">
+          <div style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:10px;padding:clamp(8px,1.5vh,14px);">
+            <div style="font-size:clamp(9px,1.2vw,12px);font-weight:700;color:#34d399;margin-bottom:clamp(6px,1vh,10px);">✅ ACTO VÁLIDO</div>
+            ${['Dictado por órgano competente','Sigue el procedimiento legal','Debidamente motivado','Respeta el orden constitucional'].map(t=>`<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;"><div style="width:5px;height:5px;border-radius:50%;background:#34d399;flex-shrink:0;"></div><span style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.8);">${t}</span></div>`).join('')}
+          </div>
+          <div style="background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);border-radius:10px;padding:clamp(8px,1.5vh,14px);">
+            <div style="font-size:clamp(9px,1.2vw,12px);font-weight:700;color:#f87171;margin-bottom:clamp(6px,1vh,10px);">❌ NULO DE PLENO DERECHO</div>
+            ${['Dictado por órgano incompetente','Prescinde del procedimiento legal','Sin motivación en potestad discrecional','Transgrede la Constitución'].map(t=>`<div style="display:flex;align-items:center;gap:7px;margin-bottom:6px;"><div style="width:5px;height:5px;border-radius:50%;background:#f87171;flex-shrink:0;"></div><span style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.8);">${t}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #0c2a1f 0%, #134e38 100%)',
+    accent: '#4ade80',
+    type: 'procedimiento',
+    content: `
+      <div style="display:flex;height:100%;padding:4% 6%;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-right:4%;">
+          <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:2px;text-transform:uppercase;color:#4ade80;margin-bottom:6px;">Módulo 6</div>
+          <div style="font-size:clamp(14px,2.4vw,26px);font-weight:800;color:white;margin-bottom:clamp(8px,2vh,16px);">Procedimiento<br>Administrativo</div>
+          <div style="width:36px;height:3px;background:#4ade80;margin-bottom:clamp(10px,2vh,18px);border-radius:2px;"></div>
+          <div style="background:rgba(74,222,128,0.1);border-left:3px solid #4ade80;border-radius:0 8px 8px 0;padding:clamp(8px,1.5vh,14px);margin-bottom:clamp(8px,2vh,16px);">
+            <p style="font-size:clamp(9px,1.3vw,13px);color:rgba(255,255,255,0.85);line-height:1.5;">La solicitud puede iniciarse <strong style="color:#4ade80;">a pedimento de parte</strong> o <strong style="color:#4ade80;">de oficio</strong>. La inactividad compromete la responsabilidad del funcionario.</p>
+          </div>
+          <div style="font-size:clamp(9px,1.2vw,12px);font-weight:700;color:#4ade80;margin-bottom:8px;">La solicitud debe contener:</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(4px,0.8vh,8px);">
+            ${['Identificación del solicitante','Domicilio para notificaciones','Hechos y motivaciones','Documentos de soporte','Lugar, fecha y firma','Órgano destinatario'].map(t=>`<div style="display:flex;align-items:center;gap:6px;"><div style="width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;"></div><span style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.8);">${t}</span></div>`).join('')}
+          </div>
+        </div>
+        <div style="width:34%;display:flex;flex-direction:column;gap:clamp(6px,1.2vh,10px);justify-content:center;">
+          <div style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:10px;padding:clamp(10px,2vh,16px);text-align:center;">
+            <div style="font-size:clamp(10px,1.6vw,16px);font-weight:700;color:#4ade80;margin-bottom:6px;">⚠️ Inactividad</div>
+            <p style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.75);line-height:1.5;">Si no hay respuesta en el plazo, puede considerarse <strong style="color:#4ade80;">aceptación tácita</strong> de la petición</p>
+          </div>
+          <div style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);border-radius:10px;padding:clamp(10px,2vh,16px);text-align:center;">
+            <div style="font-size:clamp(10px,1.6vw,16px);font-weight:700;color:#4ade80;margin-bottom:6px;">📋 Modelos</div>
+            <p style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.75);line-height:1.5;">Disponibles en todas las oficinas y páginas web del Estado para facilitar las peticiones</p>
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    bg: 'linear-gradient(135deg, #0f2744 0%, #1a3a5c 60%, #c9a227 200%)',
+    accent: '#c9a227',
+    type: 'cierre',
+    content: `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:5% 8%;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,162,39,0.08) 0%,transparent 60%);"></div>
+        <div style="font-size:clamp(8px,1.1vw,11px);letter-spacing:3px;text-transform:uppercase;color:#c9a227;margin-bottom:clamp(8px,2vh,16px);">Conclusión</div>
+        <div style="font-size:clamp(16px,3vw,32px);font-weight:800;color:white;margin-bottom:clamp(10px,2vh,18px);line-height:1.2;">La Ley 107-13 transforma<br>la relación <span style="color:#c9a227;">ciudadano–Estado</span></div>
+        <div style="width:50px;height:3px;background:#c9a227;margin:0 auto clamp(10px,2vh,18px);border-radius:2px;"></div>
+        <p style="font-size:clamp(10px,1.5vw,15px);color:rgba(255,255,255,0.8);max-width:580px;line-height:1.7;margin-bottom:clamp(16px,3vh,28px);">Establece un marco claro de derechos, deberes y procedimientos que permiten al ciudadano dominicano exigir una <strong style="color:#c9a227;">administración eficaz, justa y transparente</strong>.</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.5vw,16px);max-width:540px;margin-bottom:clamp(16px,3vh,26px);">
+          ${[['8','Principios'],['12+','Derechos'],['5','Deberes']].map(([n,l])=>`
+            <div style="background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);border-radius:10px;padding:clamp(8px,1.5vh,16px);">
+              <div style="font-size:clamp(20px,3.5vw,38px);font-weight:900;color:#c9a227;line-height:1;">${n}</div>
+              <div style="font-size:clamp(8px,1.1vw,11px);color:rgba(255,255,255,0.65);margin-top:4px;">${l}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:clamp(9px,1.2vw,12px);color:rgba(255,255,255,0.4);">Johan Tapia, PhD · johan-tapia-192183281 · &#128222; 809-868-4994</div>
+      </div>`
+  }
+];
+
+// ─── ESTADO ────────────────────────────────────────────────────────────────────
+let currentSlide = 0;
+let isModal = false;
+
+// ─── RENDER ────────────────────────────────────────────────────────────────────
+function renderSlide(idx, stageId) {
+  const s = SLIDES[idx];
+  const stage = document.getElementById(stageId);
+  if (!stage) return;
+  stage.style.background = s.bg;
+  stage.style.transition = 'opacity 0.35s ease';
+  stage.style.opacity = '0';
+  setTimeout(() => {
+    stage.innerHTML = s.content;
+    stage.style.opacity = '1';
+  }, 180);
+}
+
+function updateCounters() {
+  const txt = `${currentSlide + 1} / ${SLIDES.length}`;
+  const sc = document.getElementById('slideCounter');
+  const mc = document.getElementById('modalCounter');
+  if (sc) sc.textContent = txt;
+  if (mc) mc.textContent = txt;
+
+  const pct = ((currentSlide + 1) / SLIDES.length * 100) + '%';
+  const sp = document.getElementById('slideProgress');
+  const mp = document.getElementById('modalProgress');
+  if (sp) sp.style.width = pct;
+  if (mp) mp.style.width = pct;
+}
+
+function buildThumbs(stripId) {
+  const strip = document.getElementById(stripId);
+  if (!strip) return;
+  strip.innerHTML = '';
+  SLIDES.forEach((s, i) => {
+    const th = document.createElement('div');
+    th.style.cssText = `width:clamp(40px,8vw,70px);height:clamp(24px,5vw,42px);border-radius:5px;background:${s.bg};flex-shrink:0;cursor:pointer;border:2px solid ${i===currentSlide?'#c9a227':'transparent'};transition:all 0.2s;display:flex;align-items:center;justify-content:center;`;
+    const num = document.createElement('span');
+    num.textContent = i + 1;
+    num.style.cssText = 'font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);';
+    th.appendChild(num);
+    th.onclick = () => goToSlide(i);
+    strip.appendChild(th);
+  });
+}
+
+function refreshThumbs() {
+  ['thumbStrip','modalThumbStrip'].forEach(id => {
+    const strip = document.getElementById(id);
+    if (!strip) return;
+    strip.querySelectorAll('div').forEach((th, i) => {
+      th.style.borderColor = i === currentSlide ? '#c9a227' : 'transparent';
+    });
+  });
+}
+
+function goToSlide(idx) {
+  currentSlide = Math.max(0, Math.min(SLIDES.length - 1, idx));
+  renderSlide(currentSlide, 'slideStage');
+  if (isModal) renderSlide(currentSlide, 'modalStage');
+  updateCounters();
+  refreshThumbs();
+}
+
+function slideNext() { goToSlide(currentSlide + 1); }
+function slidePrev() { goToSlide(currentSlide - 1); }
+
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function abrirPresentacion() {
+  isModal = true;
+  const modal = document.getElementById('presentModal');
+  modal.style.display = 'flex';
+  buildThumbs('modalThumbStrip');
+  renderSlide(currentSlide, 'modalStage');
+  updateCounters();
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarPresentacion() {
+  isModal = false;
+  document.getElementById('presentModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// ─── TECLADO ─────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); slideNext(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); slidePrev(); }
+  if (e.key === 'Escape')                                                { cerrarPresentacion(); }
+  if (e.key === 'f' || e.key === 'F')                                    { abrirPresentacion(); }
+});
+
+// ─── SWIPE TÁCTIL ─────────────────────────────────────────────────────────────
+let touchX = 0;
+['slideStage','modalStage'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) dx < 0 ? slideNext() : slidePrev();
+  }, { passive: true });
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+(function init() {
+  buildThumbs('thumbStrip');
+  renderSlide(0, 'slideStage');
+  updateCounters();
+})();
 </script>
 
 </body>
