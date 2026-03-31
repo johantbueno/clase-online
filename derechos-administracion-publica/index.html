@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ley 107-13 | Derechos y Deberes ante la Administración Pública</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --azul: #1a3a5c;
+      --azul-medio: #2563a8;
+      --azul-claro: #3b82f6;
+      --dorado: #c9a227;
+      --gris-bg: #f4f6f9;
+      --gris-claro: #e8ecf1;
+      --texto: #1e293b;
+      --texto-claro: #64748b;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--texto);
+      background: var(--gris-bg);
+      font-size: 16px;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 100%);
+      color: white;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-stripe {
+      background: var(--dorado);
+      height: 6px;
+    }
+
+    .header-content {
+      padding: 50px 30px 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-ley {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    header h1 span {
+      color: var(--dorado);
+    }
+
+    header .subtitulo {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 24px;
+      max-width: 680px;
+    }
+
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta-badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-decor {
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .header-decor-2 {
+      position: absolute;
+      right: 80px;
+      bottom: -120px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* NAV TABS */
+    .nav-tabs {
+      background: white;
+      border-bottom: 2px solid var(--gris-claro);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--texto-claro);
+      white-space: nowrap;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-tab:hover { color: var(--azul-medio); border-bottom-color: var(--azul-claro); }
+    .nav-tab.active { color: var(--azul); border-bottom-color: var(--dorado); }
+
+    /* MAIN CONTENT */
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .content-area { min-width: 0; }
+
+    /* CARDS */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 20px 24px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .icon-azul { background: #dbeafe; }
+    .icon-verde { background: #dcfce7; }
+    .icon-naranja { background: #fef3c7; }
+    .icon-rojo { background: #fee2e2; }
+    .icon-morado { background: #ede9fe; }
+
+    .card-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--azul);
+    }
+
+    .card-header p {
+      font-size: 13px;
+      color: var(--texto-claro);
+      margin-top: 2px;
+    }
+
+    .card-body { padding: 20px 24px 24px; }
+
+    /* INTRO BOX */
+    .intro-box {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border-left: 4px solid var(--azul-medio);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .intro-box p {
+      font-size: 15px;
+      color: #1e40af;
+      line-height: 1.7;
+    }
+
+    /* PRINCIPIOS GRID */
+    .principios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .principio-item {
+      background: var(--gris-bg);
+      border-radius: 8px;
+      padding: 14px;
+      border-left: 3px solid var(--azul-claro);
+    }
+
+    .principio-item h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 6px;
+    }
+
+    .principio-item p {
+      font-size: 12px;
+      color: var(--texto-claro);
+      line-height: 1.5;
+    }
+
+    /* DERECHOS LIST */
+    .derechos-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .derecho-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--gris-bg);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .derecho-item:hover {
+      background: #eff6ff;
+      transform: translateX(3px);
+    }
+
+    .derecho-num {
+      min-width: 28px;
+      height: 28px;
+      background: var(--azul-medio);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .derecho-texto {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--texto);
+    }
+
+    .derecho-texto strong {
+      color: var(--azul);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* DEBERES */
+    .deberes-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .deber-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #fff7ed;
+      border-radius: 8px;
+      border-left: 3px solid #f97316;
+    }
+
+    .deber-check {
+      color: #ea580c;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .deber-item p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ACTOS TABLE */
+    .actos-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .actos-table th {
+      background: var(--azul);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .actos-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gris-claro);
+      vertical-align: top;
+    }
+
+    .actos-table tr:last-child td { border-bottom: none; }
+    .actos-table tr:nth-child(even) td { background: var(--gris-bg); }
+
+    .tag-valido {
+      background: #dcfce7;
+      color: #16a34a;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag-nulo {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* PROCEDIMIENTO STEPS */
+    .steps {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 20px;
+      bottom: 20px;
+      width: 2px;
+      background: var(--gris-claro);
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 20px;
+      padding-left: 30px;
+    }
+
+    .step-dot {
+      position: absolute;
+      left: -9px;
+      top: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--azul-medio);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--azul-medio);
+    }
+
+    .step h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--texto-claro);
+      line-height: 1.5;
+    }
+
+    /* ACTIVIDAD */
+    .actividad-box {
+      background: linear-gradient(135deg, #faf5ff, #ede9fe);
+      border-radius: 10px;
+      padding: 24px;
+      border: 1px solid #c4b5fd;
+    }
+
+    .actividad-box h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #6d28d9;
+      margin-bottom: 16px;
+    }
+
+    .caso-practico {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border-left: 4px solid #8b5cf6;
+    }
+
+    .caso-practico h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #4c1d95;
+      margin-bottom: 8px;
+    }
+
+    .caso-practico p {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .preguntas-reflexion {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      border-left: 4px solid #a78bfa;
+    }
+
+    .preguntas-reflexion h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #4c1d95;
+      margin-bottom: 10px;
+    }
+
+    .preguntas-reflexion ol {
+      margin-left: 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .preguntas-reflexion li {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    /* SIDEBAR */
+    .sidebar > * { margin-bottom: 20px; }
+
+    .sidebar-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      background: var(--azul);
+      color: white;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .sidebar-body { padding: 16px 18px; }
+
+    .concepto-item {
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--gris-claro);
+    }
+
+    .concepto-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .concepto-item .termino {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 4px;
+    }
+
+    .concepto-item .definicion {
+      font-size: 12px;
+      color: var(--texto-claro);
+      line-height: 1.5;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gris-claro);
+    }
+
+    .stat-item:last-child { border-bottom: none; }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--azul-medio);
+      min-width: 40px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--texto-claro);
+      line-height: 1.4;
+    }
+
+    .art-link {
+      display: block;
+      padding: 8px 0;
+      font-size: 13px;
+      color: var(--azul-medio);
+      border-bottom: 1px solid var(--gris-claro);
+      text-decoration: none;
+    }
+
+    .art-link:last-child { border-bottom: none; }
+
+    /* QUIZ */
+    .quiz-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-card h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--azul);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gris-claro);
+    }
+
+    .quiz-pregunta {
+      margin-bottom: 24px;
+    }
+
+    .quiz-pregunta h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--texto);
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      background: var(--gris-bg);
+      border-radius: 6px;
+    }
+
+    .opciones { display: grid; gap: 8px; }
+
+    .opcion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--gris-bg);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .opcion:hover { background: #eff6ff; border-color: var(--azul-claro); }
+    .opcion input[type=radio] { accent-color: var(--azul-medio); }
+    .opcion label { font-size: 13px; cursor: pointer; }
+
+    .btn-quiz {
+      background: var(--azul-medio);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-quiz:hover { background: var(--azul); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--azul);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+
+    footer strong { color: white; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      main { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .principios-grid { grid-template-columns: 1fr; }
+      .header-content { padding: 36px 20px 28px; }
+    }
+
+    /* HIGHLIGHT */
+    .highlight-text {
+      background: linear-gradient(135deg, #1a3a5c, #2563a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+
+    /* ART CITE */
+    .art-cite {
+      display: inline-block;
+      background: var(--azul);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* SECTION DIVIDER */
+    .section-num {
+      display: inline-block;
+      background: var(--dorado);
+      color: white;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 26px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-decor"></div>
+  <div class="header-decor-2"></div>
+  <div class="header-stripe"></div>
+  <div class="header-content">
+    <div class="badge-ley">Derecho Administrativo</div>
+    <h1>Derechos y Deberes de las Personas<br>en su Relación con la <span>Administración Pública</span></h1>
+    <p class="subtitulo">Análisis de la Ley No. 107-13 de la República Dominicana: Marco normativo, principios y procedimientos para garantizar una buena administración</p>
+    <div class="meta-badges">
+      <div class="meta-badge">Nivel Intermedio</div>
+      <div class="meta-badge">Duración: 25 minutos</div>
+      <div class="meta-badge">Ley No. 107-13</div>
+      <div class="meta-badge">Derecho Administrativo RD</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <div class="nav-inner">
+    <a class="nav-tab active" href="#contexto">Contexto</a>
+    <a class="nav-tab" href="#principios">Principios</a>
+    <a class="nav-tab" href="#derechos">Derechos</a>
+    <a class="nav-tab" href="#deberes">Deberes</a>
+    <a class="nav-tab" href="#actos">Actos Administrativos</a>
+    <a class="nav-tab" href="#procedimiento">Procedimiento</a>
+    <a class="nav-tab" href="#actividad">Actividad</a>
+    <a class="nav-tab" href="#evaluacion">Evaluacion</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="content-area">
+
+    <!-- MÓDULO 1: CONTEXTO -->
+    <div class="card" id="contexto">
+      <div class="card-header">
+        <div class="card-icon icon-azul">
+          <span>&#9878;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">1</span>Contexto y Marco Legal</h2>
+          <p>La Ley No. 107-13 y su importancia para el Estado Social y Democratico</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="intro-box">
+          <p>La <strong>Ley No. 107-13</strong> regula los derechos y deberes de las personas en sus relaciones con la Administracion Publica dominicana, estableciendo los principios que sirven de sustento a esa relacion e indicando los procedimientos administrativos aplicables.</p>
+        </div>
+
+        <p style="font-size:15px; margin-bottom:14px;">Promulgada el 25 de agosto de 2013, esta normativa constituye un instrumento fundamental para el anhelo del <strong>Estado Social y Democratico de Derecho</strong>, fundado en:</p>
+
+        <ul style="list-style:none; display:grid; gap:8px; margin-bottom:16px;">
+          <li style="display:flex; gap:10px; align-items:flex-start; padding:10px 14px; background:#f0f9ff; border-radius:8px;">
+            <span style="color:#0369a1; font-size:16px; margin-top:1px;">&#10004;</span>
+            <span style="font-size:14px;">Respeto a la <strong>dignidad humana</strong> y los derechos fundamentales</span>
+          </li>
+          <li style="display:flex; gap:10px; align-items:flex-start; padding:10px 14px; background:#f0f9ff; border-radius:8px;">
+            <span style="color:#0369a1; font-size:16px; margin-top:1px;">&#10004;</span>
+            <span style="font-size:14px;">Potenciacion de la <strong>soberania popular</strong> de donde emanan todos los poderes del Estado</span>
+          </li>
+          <li style="display:flex; gap:10px; align-items:flex-start; padding:10px 14px; background:#f0f9ff; border-radius:8px;">
+            <span style="color:#0369a1; font-size:16px; margin-top:1px;">&#10004;</span>
+            <span style="font-size:14px;">Introduccion del <strong>derecho a la buena administracion</strong> como derecho subjetivo en el orden administrativo</span>
+          </li>
+          <li style="display:flex; gap:10px; align-items:flex-start; padding:10px 14px; background:#f0f9ff; border-radius:8px;">
+            <span style="color:#0369a1; font-size:16px; margin-top:1px;">&#10004;</span>
+            <span style="font-size:14px;">Regulacion del <strong>Art. 138 numeral 2</strong> de la Constitucion dominicana: garantia de audiencia en procedimientos</span>
+          </li>
+        </ul>
+
+        <div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:16px; display:flex; gap:12px;">
+          <span style="font-size:20px; flex-shrink:0;">&#9888;</span>
+          <div>
+            <strong style="font-size:14px; color:#854d0e; display:block; margin-bottom:4px;">Base Constitucional</strong>
+            <p style="font-size:13px; color:#713f12; line-height:1.6;">El Art. 22 de la Constitucion dominicana establece el derecho de ciudadania a "Formular peticiones a los poderes publicos para solicitar medidas de interes publico y obtener respuesta de las autoridades en el termino establecido por las leyes."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2: PRINCIPIOS -->
+    <div class="card" id="principios">
+      <div class="card-header">
+        <div class="card-icon icon-azul">
+          <span>&#9670;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">2</span>Principios de la Actuacion Administrativa</h2>
+          <p>Fundamentos que rigen la relacion entre ciudadanos y la Administracion Publica</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px; margin-bottom:18px; color:var(--texto-claro);">La Administracion Publica sirve y garantiza con objetividad el interes general, actuando en sus relaciones con las personas de acuerdo con los siguientes principios:</p>
+
+        <div class="principios-grid">
+          <div class="principio-item">
+            <h4>Principio de Juridicidad</h4>
+            <p>Toda la actuacion administrativa se somete plenamente al ordenamiento juridico, sin excepcion.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Servicio Objetivo</h4>
+            <p>Se proyecta en el respeto a los derechos fundamentales, proscribiendo toda actuacion parcial.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio Promocional</h4>
+            <p>Crea condiciones para que la libertad e igualdad de oportunidades sean reales, removiendo obstaculos.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Racionalidad</h4>
+            <p>Se extiende especialmente a la motivacion y argumentacion que debe servir de base a la actuacion.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Igualdad de Trato</h4>
+            <p>Personas en igual situacion reciben igual trato, con motivacion expresa para cualquier diferenciacion.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Eficacia</h4>
+            <p>Las autoridades removeran de oficio los obstaculos que impidan el cumplimiento de los procedimientos.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Transparencia</h4>
+            <p>Las actuaciones administrativas son publicas y accesibles al ciudadano interesado.</p>
+          </div>
+          <div class="principio-item">
+            <h4>Principio de Coordinacion</h4>
+            <p>Colaboracion entre organos y entes publicos para garantizar la coherencia administrativa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3: DERECHOS -->
+    <div class="card" id="derechos">
+      <div class="card-header">
+        <div class="card-icon icon-verde">
+          <span>&#9996;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">3</span>Derechos de las Personas <span class="art-cite">Art. 4</span></h2>
+          <p>El catalogo de derechos que ostentan los administrados frente a la Administracion Publica</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px; margin-bottom:18px;">La Ley 107-13 consagra en su articulo 4 los siguientes derechos fundamentales que concretan el concepto de <strong>"buena administracion"</strong>:</p>
+
+        <ul class="derechos-list">
+          <li class="derecho-item">
+            <div class="derecho-num">1</div>
+            <div class="derecho-texto">
+              <strong>Derecho a la tutela administrativa efectiva</strong>
+              Garantia de que el Estado responda y atienda eficazmente a las solicitudes del ciudadano.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">2</div>
+            <div class="derecho-texto">
+              <strong>Derecho a la motivacion de las actuaciones administrativas</strong>
+              Toda decision administrativa debe estar debidamente fundamentada con razonamiento logico y legal.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">3</div>
+            <div class="derecho-texto">
+              <strong>Derecho a una resolucion en plazo razonable</strong>
+              La administracion tiene la obligacion de responder dentro de plazos definidos por ley.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">4</div>
+            <div class="derecho-texto">
+              <strong>Derecho a una resolucion justa</strong>
+              Las actuaciones administrativas deben basarse en principios de equidad y justicia.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">5</div>
+            <div class="derecho-texto">
+              <strong>Derecho a presentar por escrito peticiones</strong>
+              Ningun funcionario podra negarse a recibir una peticion; su incumplimiento compromete su responsabilidad.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">6</div>
+            <div class="derecho-texto">
+              <strong>Derecho a respuesta oportuna y eficaz</strong>
+              Las autoridades deben responder en el plazo establecido; la inactividad puede considerarse aceptacion tacita.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">7</div>
+            <div class="derecho-texto">
+              <strong>Derecho a no presentar documentos ya en poder de la Administracion</strong>
+              Proteccion contra la carga burocrática innecesaria de documentos ya suministrados.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">8</div>
+            <div class="derecho-texto">
+              <strong>Derecho a ser oido antes de medidas desfavorables</strong>
+              La administracion debe escuchar al ciudadano antes de adoptar decisiones que le perjudiquen.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">9</div>
+            <div class="derecho-texto">
+              <strong>Derecho de participacion en actuaciones de interes</strong>
+              Especialmente a traves de audiencias e informaciones publicas en asuntos que les afecten.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">10</div>
+            <div class="derecho-texto">
+              <strong>Derecho a indemnizacion justa</strong>
+              Cuando se produzcan lesiones de bienes o derechos por accion u omision de la Administracion.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">11</div>
+            <div class="derecho-texto">
+              <strong>Derecho a servicios publicos en condiciones de universalidad y calidad</strong>
+              En el marco del principio de subsidiaridad del Estado.
+            </div>
+          </li>
+          <li class="derecho-item">
+            <div class="derecho-num">12</div>
+            <div class="derecho-texto">
+              <strong>Derecho a opinar sobre el funcionamiento de los servicios publicos</strong>
+              Derecho a conocer las obligaciones y compromisos derivados de los servicios a cargo de la Administracion.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4: DEBERES -->
+    <div class="card" id="deberes">
+      <div class="card-header">
+        <div class="card-icon icon-naranja">
+          <span>&#9745;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">4</span>Deberes de las Personas</h2>
+          <p>Obligaciones del ciudadano en su relacion con la Administracion Publica</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px; margin-bottom:18px; color:var(--texto-claro);">La relacion ciudadano-Estado es bidireccional. Junto a los derechos, la ley establece deberes que el ciudadano debe cumplir:</p>
+        <ul class="deberes-list">
+          <li class="deber-item">
+            <div class="deber-check">&#9654;</div>
+            <p><strong>Cumplir la Constitucion y el ordenamiento juridico:</strong> Respetar la Constitucion, las leyes y el ordenamiento juridico en general.</p>
+          </li>
+          <li class="deber-item">
+            <div class="deber-check">&#9654;</div>
+            <p><strong>Actuar de buena fe:</strong> Abstenerse de maniobras dilatorias, declaraciones falsas o afirmaciones temerarias en los procedimientos.</p>
+          </li>
+          <li class="deber-item">
+            <div class="deber-check">&#9654;</div>
+            <p><strong>Ejercer sus derechos con responsabilidad:</strong> Evitar la reiteracion de solicitudes improcedentes o abuso del derecho de peticion.</p>
+          </li>
+          <li class="deber-item">
+            <div class="deber-check">&#9654;</div>
+            <p><strong>Trato respetuoso:</strong> Observar un trato respetuoso con el personal al servicio de la Administracion Publica en todo momento.</p>
+          </li>
+          <li class="deber-item">
+            <div class="deber-check">&#9654;</div>
+            <p><strong>Colaborar en el buen desarrollo de los procedimientos:</strong> Cumplir con las obligaciones establecidas en las leyes para la tramitacion de procedimientos.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5: ACTOS -->
+    <div class="card" id="actos">
+      <div class="card-header">
+        <div class="card-icon icon-rojo">
+          <span>&#9779;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">5</span>Actos Administrativos</h2>
+          <p>Validez, nulidad y ejecutoriedad de los actos de la Administracion</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="intro-box">
+          <p><strong>Definicion legal:</strong> Toda declaracion unilateral de voluntad, juicio o conocimiento realizada en ejercicio de funcion administrativa por una Administracion Publica, que produce efectos juridicos directos, individuales e inmediatos frente a terceros.</p>
+        </div>
+
+        <h3 style="font-size:15px; font-weight:700; margin-bottom:14px; color:var(--azul);">Requisitos de Validez vs. Causas de Nulidad</h3>
+
+        <table class="actos-table" style="margin-bottom:20px;">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th><span class="tag-valido">Acto Valido</span></th>
+              <th><span class="tag-nulo">Acto Nulo</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Competencia</strong></td>
+              <td>Dictado por organo competente</td>
+              <td>Dictado por organo incompetente</td>
+            </tr>
+            <tr>
+              <td><strong>Procedimiento</strong></td>
+              <td>Sigue el procedimiento establecido</td>
+              <td>Prescinde del procedimiento legal</td>
+            </tr>
+            <tr>
+              <td><strong>Motivacion</strong></td>
+              <td>Debidamente motivado</td>
+              <td>Carente de motivacion (en potestad discrecional)</td>
+            </tr>
+            <tr>
+              <td><strong>Constitucionalidad</strong></td>
+              <td>Respeta el orden constitucional</td>
+              <td>Transgrede el orden constitucional</td>
+            </tr>
+            <tr>
+              <td><strong>Marco legal</strong></td>
+              <td>Respeta las leyes aplicables</td>
+              <td>Incurre en infracciones sancionadas con nulidad</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div style="background:#dcfce7; border-radius:8px; padding:14px;">
+            <strong style="font-size:13px; color:#15803d; display:block; margin-bottom:6px;">Presuncion de Validez</strong>
+            <p style="font-size:12px; color:#166534;">Los actos validos son presuntos ejecutivos y ejecutorios: se pueden ejecutar sin necesidad de una orden judicial previa.</p>
+          </div>
+          <div style="background:#fee2e2; border-radius:8px; padding:14px;">
+            <strong style="font-size:13px; color:#dc2626; display:block; margin-bottom:6px;">Nulidad de Pleno Derecho</strong>
+            <p style="font-size:12px; color:#991b1b;">Los actos que transgredan la Constitucion o el procedimiento legal son nulos de pleno derecho sin necesidad de declaracion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6: PROCEDIMIENTO -->
+    <div class="card" id="procedimiento">
+      <div class="card-header">
+        <div class="card-icon icon-morado">
+          <span>&#9732;</span>
+        </div>
+        <div>
+          <h2><span class="section-num">6</span>Procedimiento Administrativo</h2>
+          <p>Pasos para iniciar y tramitar una solicitud ante la Administracion</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px; margin-bottom:20px; color:var(--texto-claro);">El procedimiento puede iniciarse <strong>a pedimento de parte</strong> o <strong>de oficio</strong>. La solicitud inicial debe contener:</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-dot"></div>
+            <h4>Identificacion del solicitante</h4>
+            <p>Nombre, apellidos, cedula o generales de ley. En caso de representacion, datos del representante.</p>
+          </div>
+          <div class="step">
+            <div class="step-dot"></div>
+            <h4>Domicilio para notificaciones</h4>
+            <p>Direccion fisica o electronica (correo) donde se recibiran todas las comunicaciones oficiales del procedimiento.</p>
+          </div>
+          <div class="step">
+            <div class="step-dot"></div>
+            <h4>Hechos y motivaciones</h4>
+            <p>Exposicion clara de los hechos, razones y la peticion concreta que se eleva a la administracion.</p>
+          </div>
+          <div class="step">
+            <div class="step-dot"></div>
+            <h4>Documentos de soporte</h4>
+            <p>Documentos que se consideren convenientes para precisar o completar la peticion formulada.</p>
+          </div>
+          <div class="step">
+            <div class="step-dot"></div>
+            <h4>Lugar, fecha y firma</h4>
+            <p>Indicacion del organo destinatario, lugar y fecha de presentacion, y firma del solicitante o representante.</p>
+          </div>
+        </div>
+
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:14px; margin-top:18px;">
+          <strong style="font-size:13px; color:#15803d; display:block; margin-bottom:6px;">Modelos Normalizados</strong>
+          <p style="font-size:13px; color:#166534;">En todas las oficinas publicas y paginas web de los organos estatales estaran disponibles modelos normalizados de iniciacion para facilitar el ejercicio del derecho de peticion.</p>
+        </div>
+
+        <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:14px; margin-top:12px;">
+          <strong style="font-size:13px; color:#dc2626; display:block; margin-bottom:6px;">Consecuencia de la Inactividad Administrativa</strong>
+          <p style="font-size:13px; color:#991b1b;">Si la administracion no decide en el plazo indicado, incurre en inactividad administrativa contraria a derecho. El funcionario que omita respuesta oportuna <strong>compromete su responsabilidad personal</strong>. La inactividad puede considerarse como aceptacion tacita de la peticion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVIDAD PRACTICA -->
+    <div id="actividad">
+      <div class="actividad-box">
+        <h3>Actividad Practica: Analisis de Casos Reales</h3>
+
+        <div class="caso-practico">
+          <h4>Caso 1: La Solicitud Sin Respuesta</h4>
+          <p>Juan Perez presento una solicitud de certificacion ante el Ministerio de Interior hace 45 dias. Nunca recibio respuesta ni notificacion. El funcionario responsable alega "exceso de trabajo" como justificacion. Identifica: (a) que derechos de Juan han sido vulnerados segun la Ley 107-13, (b) que principio administrativo fue infringido, y (c) que consecuencias juridicas enfrenta el funcionario.</p>
+        </div>
+
+        <div class="caso-practico">
+          <h4>Caso 2: El Acto Sin Motivacion</h4>
+          <p>La Oficina de Presupuesto emite una resolucion negando la solicitud de una empresa para participar en una licitacion publica, sin indicar las razones de la negativa. La empresa solicita asesoramiento juridico. Analiza si el acto administrativo es valido o nulo segun la Ley 107-13 y que recursos tiene la empresa.</p>
+        </div>
+
+        <div class="preguntas-reflexion">
+          <h4>Preguntas de Reflexion</h4>
+          <ol>
+            <li>Cuando la Ley 107-13 establece que la inactividad administrativa puede considerarse "aceptacion tacita", que implicaciones practicas tiene esto para el ciudadano y para la administracion?</li>
+            <li>Como contribuye el principio de transparencia al fortalecimiento del Estado Social y Democratico de Derecho en la Republica Dominicana?</li>
+            <li>Existe diferencia entre el "derecho a la tutela judicial efectiva" contemplado en la Constitucion y el "derecho a la tutela administrativa efectiva" de la Ley 107-13? Explica.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVALUACION -->
+    <div class="quiz-card" id="evaluacion">
+      <h2>Evaluacion de Conocimientos</h2>
+
+      <div class="quiz-pregunta">
+        <h4>1. Segun la Ley 107-13, si un funcionario se niega a recibir una peticion por escrito:</h4>
+        <div class="opciones">
+          <div class="opcion">
+            <input type="radio" name="q1" id="q1a">
+            <label for="q1a">Puede hacerlo si la peticion no cumple los requisitos de forma</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q1" id="q1b">
+            <label for="q1b">Compromete su responsabilidad personal y viola la ley</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q1" id="q1c">
+            <label for="q1c">Debe enviar la peticion a otro organo competente</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q1" id="q1d">
+            <label for="q1d">Solo es obligatorio recibir peticiones en horas habiles</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-pregunta">
+        <h4>2. Un acto administrativo dictado por un organo incompetente es:</h4>
+        <div class="opciones">
+          <div class="opcion">
+            <input type="radio" name="q2" id="q2a">
+            <label for="q2a">Valido si cumple los demas requisitos legales</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q2" id="q2b">
+            <label for="q2b">Anulable si el interesado lo impugna a tiempo</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q2" id="q2c">
+            <label for="q2c">Nulo de pleno derecho sin necesidad de declaracion</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q2" id="q2d">
+            <label for="q2d">Subsanable si el organo competente lo ratifica</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-pregunta">
+        <h4>3. El principio de juridicidad en la Ley 107-13 significa que:</h4>
+        <div class="opciones">
+          <div class="opcion">
+            <input type="radio" name="q3" id="q3a">
+            <label for="q3a">Solo los jueces pueden controlar la administracion publica</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q3" id="q3b">
+            <label for="q3b">Toda la actuacion administrativa se somete plenamente al ordenamiento juridico</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q3" id="q3c">
+            <label for="q3c">La administracion puede actuar sin fundamento legal en casos de emergencia</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q3" id="q3d">
+            <label for="q3d">Solo aplica a los funcionarios de alto rango del Estado</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-pregunta">
+        <h4>4. El derecho del ciudadano a "no presentar documentos que ya obren en poder de la Administracion" tiene como finalidad:</h4>
+        <div class="opciones">
+          <div class="opcion">
+            <input type="radio" name="q4" id="q4a">
+            <label for="q4a">Reducir la carga burocrática y facilitar el acceso efectivo a los servicios</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q4" id="q4b">
+            <label for="q4b">Permitir que el ciudadano evite cualquier tramite administrativo</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q4" id="q4c">
+            <label for="q4c">Eliminar la necesidad de presentar documentos en todos los casos</label>
+          </div>
+          <div class="opcion">
+            <input type="radio" name="q4" id="q4d">
+            <label for="q4d">Garantizar el secreto de la informacion personal del ciudadano</label>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-quiz" onclick="verificarRespuestas()">Verificar Respuestas</button>
+      <div id="resultado" style="margin-top:16px; font-size:14px;"></div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+      <div class="sidebar-header">Conceptos Clave</div>
+      <div class="sidebar-body">
+        <div class="concepto-item">
+          <div class="termino">Administracion Publica</div>
+          <div class="definicion">Organos y entes publicos comprendidos en el ambito de aplicacion de la Ley 107-13.</div>
+        </div>
+        <div class="concepto-item">
+          <div class="termino">Personas</div>
+          <div class="definicion">Comprende tanto personas fisicas como personas juridicas segun la ley.</div>
+        </div>
+        <div class="concepto-item">
+          <div class="termino">Acto Administrativo</div>
+          <div class="definicion">Declaracion unilateral de voluntad, juicio o conocimiento en ejercicio de funcion administrativa con efectos juridicos directos.</div>
+        </div>
+        <div class="concepto-item">
+          <div class="termino">Buena Administracion</div>
+          <div class="definicion">Derecho subjetivo del ciudadano a recibir una gestion publica eficaz, justa, motivada y en plazo razonable.</div>
+        </div>
+        <div class="concepto-item">
+          <div class="termino">Inactividad Administrativa</div>
+          <div class="definicion">Omision del deber de decidir en el plazo legal. Genera responsabilidad del funcionario y puede constituir aceptacion tacita.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-header">La Ley en Numeros</div>
+      <div class="sidebar-body">
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Derechos consagrados en el Art. 4 de la Ley 107-13</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Principios de actuacion administrativa establecidos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Deberes del ciudadano ante la Administracion Publica</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2013</div>
+          <div class="stat-label">Ano de promulgacion de la Ley</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Art. 138</div>
+          <div class="stat-label">Articulo constitucional que regula la Ley</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-header">Referencias Legales</div>
+      <div class="sidebar-body">
+        <a class="art-link" href="#">Ley No. 107-13 - Texto Completo</a>
+        <a class="art-link" href="#">Constitucion Dominicana Art. 22</a>
+        <a class="art-link" href="#">Constitucion Dominicana Art. 138</a>
+        <a class="art-link" href="#">Art. 4 - Catalogo de Derechos</a>
+        <a class="art-link" href="#">Titulo III - Actos Administrativos</a>
+        <a class="art-link" href="#">Ministerio de Administracion Publica RD</a>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-header">Autor del Analisis</div>
+      <div class="sidebar-body" style="text-align:center;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--azul); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; margin:0 auto 12px;">CP</div>
+        <div style="font-size:14px; font-weight:700; color:var(--azul); margin-bottom:4px;">Carlos E. Pimentel Florenzán</div>
+        <div style="font-size:12px; color:var(--texto-claro); margin-bottom:8px;">Analisis publicado el 25 de agosto de 2013</div>
+        <div style="font-size:12px; color:var(--texto-claro);">Especialista en Derecho Administrativo de la Republica Dominicana</div>
+      </div>
+    </div>
+
+  </aside>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Ley No. 107-13</strong> | Derechos y Deberes en la Administracion Publica Dominicana</p>
+  <p style="margin-top:6px;">Clase generada para uso academico en Moodle &bull; Basado en el analisis de Carlos E. Pimentel Florenzán &bull; Republica Dominicana</p>
+</footer>
+
+<script>
+  // Nav tabs active state
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Intersection observer para activar tabs al scroll
+  const sections = document.querySelectorAll('[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+          tab.classList.toggle('active', tab.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Quiz
+  function verificarRespuestas() {
+    const correctas = { q1: 'q1b', q2: 'q2c', q3: 'q3b', q4: 'q4a' };
+    let correctasCount = 0;
+    let total = Object.keys(correctas).length;
+
+    for (const [pregunta, respuesta] of Object.entries(correctas)) {
+      const selected = document.querySelector(`input[name="${pregunta}"]:checked`);
+      const opciones = document.querySelectorAll(`input[name="${pregunta}"]`);
+
+      opciones.forEach(op => {
+        const item = op.closest('.opcion');
+        item.style.background = '';
+        item.style.borderColor = '';
+      });
+
+      if (selected) {
+        const selectedItem = selected.closest('.opcion');
+        const correctItem = document.getElementById(respuesta)?.closest('.opcion');
+
+        if (selected.id === respuesta) {
+          selectedItem.style.background = '#dcfce7';
+          selectedItem.style.borderColor = '#16a34a';
+          correctasCount++;
+        } else {
+          selectedItem.style.background = '#fee2e2';
+          selectedItem.style.borderColor = '#dc2626';
+          if (correctItem) {
+            correctItem.style.background = '#dcfce7';
+            correctItem.style.borderColor = '#16a34a';
+          }
+        }
+      }
+    }
+
+    const porcentaje = Math.round((correctasCount / total) * 100);
+    const resultadoDiv = document.getElementById('resultado');
+
+    let mensaje = '';
+    if (porcentaje === 100) {
+      mensaje = `<div style="background:#dcfce7; border-radius:8px; padding:14px; color:#166534;"><strong>Excelente.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Dominas completamente los contenidos de la Ley 107-13.</div>`;
+    } else if (porcentaje >= 75) {
+      mensaje = `<div style="background:#fefce8; border-radius:8px; padding:14px; color:#854d0e;"><strong>Muy bien.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Revisa los temas marcados en rojo para consolidar tu comprension.</div>`;
+    } else {
+      mensaje = `<div style="background:#fef2f2; border-radius:8px; padding:14px; color:#991b1b;"><strong>Necesitas repasar.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Te recomendamos releer los modulos 3, 5 y 6 sobre derechos y actos administrativos.</div>`;
+    }
+
+    resultadoDiv.innerHTML = mensaje;
+  }
+</script>
+
+</body>
+</html>
