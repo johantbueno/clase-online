@@ -680,9 +680,203 @@
       margin-right: 8px;
       flex-shrink: 0;
     }
+    /* ANIMACIONES */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,168,0.4); }
+      50%       { box-shadow: 0 0 0 10px rgba(37,99,168,0); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    .animate-fadeInUp  { animation: fadeInUp 0.6s ease both; }
+    .animate-fadeIn    { animation: fadeIn 0.8s ease both; }
+    .animate-slideLeft { animation: slideInLeft 0.5s ease both; }
+
+    /* PROGRESS BAR HEADER */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,0.15);
+      z-index: 9999;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--dorado), #f59e0b);
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* BOTÓN SCROLL TOP */
+    .scroll-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      background: var(--azul-medio);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      z-index: 1000;
+      border: none;
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--azul); transform: translateY(-2px); }
+
+    /* TOOLTIP */
+    [data-tip] { position: relative; cursor: help; }
+    [data-tip]::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: 125%; left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: white;
+      font-size: 12px;
+      line-height: 1.4;
+      padding: 7px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+    }
+    [data-tip]:hover::after { opacity: 1; }
+
+    /* HIGHLIGHT AL SCROLL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* PRINCIPIOS - hover animado */
+    .principio-item {
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .principio-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      border-color: var(--azul-medio);
+    }
+
+    /* DERECHO - hover ya definido, añadimos glow */
+    .derecho-item { transition: all 0.2s; }
+    .derecho-item:hover .derecho-num { animation: pulse 1s; }
+
+    /* STAT badge animado */
+    .stat-num { transition: transform 0.3s; }
+    .stat-item:hover .stat-num { transform: scale(1.2); }
+
+    /* TABS - indicador animado */
+    .nav-tab { transition: color 0.2s, border-color 0.2s; }
+
+    /* Breadcrumb header float badges */
+    .meta-badge { animation: floatBadge 3s ease-in-out infinite; }
+    .meta-badge:nth-child(2) { animation-delay: 0.5s; }
+    .meta-badge:nth-child(3) { animation-delay: 1s; }
+    .meta-badge:nth-child(4) { animation-delay: 1.5s; }
+
+    /* CARD hover lift */
+    .card {
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    /* ACCORDION para móvil */
+    .acc-toggle {
+      display: none;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+    }
+    @media (max-width: 600px) {
+      .acc-toggle { display: flex; align-items: center; justify-content: space-between; }
+      .acc-body { overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+      .acc-body.open { max-height: 2000px; }
+    }
+
+    /* QUOTE block */
+    .quote-block {
+      border-left: 4px solid var(--dorado);
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-style: italic;
+      color: #78350f;
+      font-size: 14px;
+      line-height: 1.7;
+      position: relative;
+    }
+    .quote-block::before {
+      content: '\201C';
+      font-size: 48px;
+      color: var(--dorado);
+      position: absolute;
+      top: -6px; left: 10px;
+      opacity: 0.4;
+      font-style: normal;
+      line-height: 1;
+    }
+    .quote-block cite {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      color: #92400e;
+    }
+
   </style>
 </head>
 <body>
+
+<!-- BARRA DE PROGRESO -->
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+<!-- BOTÓN SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
 
 <!-- HEADER -->
 <header>
@@ -733,6 +927,11 @@
         </div>
       </div>
       <div class="card-body">
+        <div class="quote-block">
+          "Esta normativa se convierte en un instrumento que en su implementación contribuirá con el anhelado Estado Social y Democrático de Derechos, fundado en el respeto de la dignidad humana, los derechos fundamentales, potenciando la soberanía popular de donde emanan todos los poderes."
+          <cite>— Carlos E. Pimentel Florenzán, 2013</cite>
+        </div>
+
         <div class="intro-box">
           <p>La <strong>Ley No. 107-13</strong> regula los derechos y deberes de las personas en sus relaciones con la Administracion Publica dominicana, estableciendo los principios que sirven de sustento a esa relacion e indicando los procedimientos administrativos aplicables.</p>
         </div>
@@ -1417,9 +1616,15 @@
             República Dominicana. (2013). <em style="color:#93c5fd;">Ley No. 107-13 sobre los Derechos de las Personas en sus Relaciones con la Administración y de Procedimiento Administrativo.</em> Gaceta Oficial No. 10722, 8 de agosto de 2013. Ministerio de Administración Pública. https://map.gob.do/wpfd_file/ley-107-13/
           </p>
           <div style="border-top:1px solid #334155; margin-top:14px; padding-top:14px;">
-            <p style="font-size:12px; color:#94a3b8; margin-bottom:10px; font-family:monospace; letter-spacing:0.5px;">ANÁLISIS CITADO EN ESTA CLASE</p>
+            <p style="font-size:12px; color:#94a3b8; margin-bottom:10px; font-family:monospace; letter-spacing:0.5px;">FUENTE BIBLIOGRÁFICA CITADA</p>
             <p style="font-size:13px; color:#e2e8f0; line-height:1.8; font-family:monospace;">
-              Pimentel Florenzán, C. E. (2013, agosto 25). <em style="color:#93c5fd;">Derechos y deberes de las personas en su relación con la administración pública.</em> Análisis de la Ley No. 107-13. República Dominicana.
+              Pimentel Florenzán, C. E. (2013, agosto 25). <em style="color:#93c5fd;">Derechos y deberes de las personas en su relación con la administración pública.</em> Artículo de análisis jurídico. República Dominicana. [Fuente citada — no es el autor de esta clase]
+            </p>
+          </div>
+          <div style="border-top:1px solid #334155; margin-top:14px; padding-top:14px;">
+            <p style="font-size:12px; color:#94a3b8; margin-bottom:10px; font-family:monospace; letter-spacing:0.5px;">REDACTOR DE ESTA CLASE</p>
+            <p style="font-size:13px; color:#e2e8f0; line-height:1.8; font-family:monospace;">
+              Tapia, J. (2025). <em style="color:#93c5fd;">Derechos y Deberes de las Personas en su Relación con la Administración Pública — Clase Online.</em> Johan Tapia, PhD. República Dominicana. https://johantbueno.github.io/clase-online/derechos-administracion-publica/
             </p>
           </div>
           <div style="border-top:1px solid #334155; margin-top:14px; padding-top:14px;">
@@ -1503,12 +1708,27 @@
     </div>
 
     <div class="sidebar-card">
-      <div class="sidebar-header">Autor del Analisis</div>
+      <div class="sidebar-header">Redactor de la Clase</div>
       <div class="sidebar-body" style="text-align:center;">
-        <div style="width:56px; height:56px; border-radius:50%; background:var(--azul); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; margin:0 auto 12px;">CP</div>
-        <div style="font-size:14px; font-weight:700; color:var(--azul); margin-bottom:4px;">Carlos E. Pimentel Florenzán</div>
-        <div style="font-size:12px; color:var(--texto-claro); margin-bottom:8px;">Analisis publicado el 25 de agosto de 2013</div>
-        <div style="font-size:12px; color:var(--texto-claro);">Especialista en Derecho Administrativo de la Republica Dominicana</div>
+        <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1a3a5c);color:white;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;margin:0 auto 10px;box-shadow:0 4px 14px rgba(37,99,168,0.35);">JT</div>
+        <div style="font-size:15px;font-weight:700;color:var(--azul);margin-bottom:2px;">Johan Tapia, PhD</div>
+        <div style="font-size:12px;color:var(--texto-claro);margin-bottom:14px;">Docente · Facilitador · Rep. Dominicana</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="https://www.linkedin.com/in/johan-tapia-192183281/" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;background:#0a66c2;border-radius:7px;color:white;font-size:12px;font-weight:600;text-decoration:none;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://wa.me/18098684994" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;background:#25d366;border-radius:7px;color:white;font-size:12px;font-weight:600;text-decoration:none;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://map.gob.do/wpfd_file/ley-107-13/" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;background:var(--azul);border-radius:7px;color:white;font-size:12px;font-weight:600;text-decoration:none;">
+            &#128196; Ley 107-13 Oficial
+          </a>
+        </div>
       </div>
     </div>
 
@@ -1526,7 +1746,7 @@
         <div style="width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#3b82f6,#1d4ed8); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800; color:white; flex-shrink:0;">JT</div>
         <div>
           <div style="font-size:11px; color:#64748b; letter-spacing:1px; text-transform:uppercase; margin-bottom:3px;">Clase preparada por</div>
-          <div style="font-size:17px; font-weight:700; color:white;">Johan Tapia</div>
+          <div style="font-size:17px; font-weight:700; color:white;">Johan Tapia, PhD</div>
           <div style="font-size:13px; color:#93c5fd; margin-top:2px;">Docente · Facilitador · República Dominicana</div>
         </div>
       </div>
@@ -1556,22 +1776,41 @@
   <!-- Footer base -->
   <div style="padding:18px 20px; text-align:center; font-size:13px;">
     <p><strong style="color:white;">Ley No. 107-13</strong> &bull; Derechos y Deberes en la Administración Pública Dominicana</p>
-    <p style="margin-top:5px; color:rgba(255,255,255,0.55);">Clase académica basada en el análisis de Carlos E. Pimentel Florenzán &bull; República Dominicana</p>
+    <p style="margin-top:5px; color:rgba(255,255,255,0.55);">Clase redactada por Johan Tapia, PhD &bull; Fuentes citadas en bibliografía &bull; República Dominicana</p>
   </div>
 </footer>
 
 <script>
-  // Nav tabs active state
-  document.querySelectorAll('.nav-tab').forEach(tab => {
-    tab.addEventListener('click', function(e) {
-      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-    });
+  // ─── BARRA DE PROGRESO ───────────────────────────────
+  const bar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    bar.style.width = Math.min(100, (scrolled / total) * 100) + '%';
+
+    // Botón scroll-top
+    const btn = document.getElementById('scrollTop');
+    scrolled > 400 ? btn.classList.add('visible') : btn.classList.remove('visible');
   });
 
-  // Intersection observer para activar tabs al scroll
-  const sections = document.querySelectorAll('[id]');
-  const observer = new IntersectionObserver((entries) => {
+  // ─── REVEAL AL SCROLL ────────────────────────────────
+  const revealEls = document.querySelectorAll('.card, .actividad-box, .quiz-card');
+  revealEls.forEach(el => el.classList.add('reveal'));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── NAV TABS ACTIVO POR SCROLL ──────────────────────
+  const sectionIds = ['contexto','principios','derechos','deberes','actos','procedimiento','actividad','evaluacion','recursos'];
+  const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
@@ -1580,21 +1819,74 @@
         });
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.25 });
 
-  sections.forEach(section => observer.observe(section));
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
 
-  // Quiz
+  // ─── CONTADOR ANIMADO STATS ──────────────────────────
+  function animateNumber(el, target, duration = 800) {
+    let start = 0;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      el.textContent = Math.floor(progress * target) + (el.dataset.suffix || '');
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-num').forEach(el => {
+          const num = parseInt(el.textContent.replace(/\D/g,''));
+          if (!isNaN(num) && num < 10000) animateNumber(el, num);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.sidebar-card').forEach(c => statsObserver.observe(c));
+
+  // ─── DERECHOS: expandir detalle ──────────────────────
+  document.querySelectorAll('.derecho-item').forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+      const isActive = this.dataset.expanded === 'true';
+      document.querySelectorAll('.derecho-item').forEach(d => {
+        d.dataset.expanded = 'false';
+        d.style.background = '';
+        d.style.boxShadow = '';
+      });
+      if (!isActive) {
+        this.dataset.expanded = 'true';
+        this.style.background = '#dbeafe';
+        this.style.boxShadow = '0 4px 12px rgba(37,99,168,0.15)';
+      }
+    });
+  });
+
+  // ─── TABS CLICK ──────────────────────────────────────
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // ─── QUIZ ────────────────────────────────────────────
   function verificarRespuestas() {
     const correctas = { q1: 'q1b', q2: 'q2c', q3: 'q3b', q4: 'q4a' };
     let correctasCount = 0;
-    let total = Object.keys(correctas).length;
+    const total = Object.keys(correctas).length;
 
     for (const [pregunta, respuesta] of Object.entries(correctas)) {
       const selected = document.querySelector(`input[name="${pregunta}"]:checked`);
-      const opciones = document.querySelectorAll(`input[name="${pregunta}"]`);
-
-      opciones.forEach(op => {
+      document.querySelectorAll(`input[name="${pregunta}"]`).forEach(op => {
         const item = op.closest('.opcion');
         item.style.background = '';
         item.style.borderColor = '';
@@ -1603,7 +1895,6 @@
       if (selected) {
         const selectedItem = selected.closest('.opcion');
         const correctItem = document.getElementById(respuesta)?.closest('.opcion');
-
         if (selected.id === respuesta) {
           selectedItem.style.background = '#dcfce7';
           selectedItem.style.borderColor = '#16a34a';
@@ -1611,28 +1902,45 @@
         } else {
           selectedItem.style.background = '#fee2e2';
           selectedItem.style.borderColor = '#dc2626';
-          if (correctItem) {
-            correctItem.style.background = '#dcfce7';
-            correctItem.style.borderColor = '#16a34a';
-          }
+          if (correctItem) { correctItem.style.background = '#dcfce7'; correctItem.style.borderColor = '#16a34a'; }
         }
       }
     }
 
-    const porcentaje = Math.round((correctasCount / total) * 100);
-    const resultadoDiv = document.getElementById('resultado');
+    const pct = Math.round((correctasCount / total) * 100);
+    const res = document.getElementById('resultado');
 
-    let mensaje = '';
-    if (porcentaje === 100) {
-      mensaje = `<div style="background:#dcfce7; border-radius:8px; padding:14px; color:#166534;"><strong>Excelente.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Dominas completamente los contenidos de la Ley 107-13.</div>`;
-    } else if (porcentaje >= 75) {
-      mensaje = `<div style="background:#fefce8; border-radius:8px; padding:14px; color:#854d0e;"><strong>Muy bien.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Revisa los temas marcados en rojo para consolidar tu comprension.</div>`;
+    let bg, color, icon, msg;
+    if (pct === 100) {
+      [bg, color, icon, msg] = ['#dcfce7','#166534','🎉','Dominas completamente los contenidos de la Ley 107-13.'];
+    } else if (pct >= 75) {
+      [bg, color, icon, msg] = ['#fefce8','#854d0e','👍','Revisa los temas marcados en rojo para consolidar tu comprension.'];
     } else {
-      mensaje = `<div style="background:#fef2f2; border-radius:8px; padding:14px; color:#991b1b;"><strong>Necesitas repasar.</strong> Resultado: ${correctasCount}/${total} (${porcentaje}%). Te recomendamos releer los modulos 3, 5 y 6 sobre derechos y actos administrativos.</div>`;
+      [bg, color, icon, msg] = ['#fef2f2','#991b1b','📖','Te recomendamos releer los modulos 3, 5 y 6 sobre derechos y actos administrativos.'];
     }
 
-    resultadoDiv.innerHTML = mensaje;
+    res.innerHTML = `
+      <div style="background:${bg}; border-radius:10px; padding:16px 20px; color:${color}; display:flex; align-items:center; gap:14px; animation:fadeInUp 0.4s ease;">
+        <span style="font-size:28px;">${icon}</span>
+        <div>
+          <strong style="font-size:15px;">Resultado: ${correctasCount}/${total} (${pct}%)</strong>
+          <p style="font-size:13px; margin-top:4px;">${msg}</p>
+        </div>
+      </div>`;
+    res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
+
+  // ─── OPCIÓN HOVER RIPPLE ─────────────────────────────
+  document.querySelectorAll('.opcion').forEach(op => {
+    op.addEventListener('click', function() {
+      this.closest('.opciones').querySelectorAll('.opcion').forEach(o => {
+        o.style.background = '';
+        o.style.borderColor = '';
+      });
+      this.style.background = '#eff6ff';
+      this.style.borderColor = 'var(--azul-claro)';
+    });
+  });
 </script>
 
 </body>
