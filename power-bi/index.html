@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power BI Intermedio | Clase Online</title>
+    <title>Power BI: Introducción y Uso Profesional</title>
     <style>
         :root {
             --primary: #1a3a5c;
             --primary-light: #2a5a8c;
-            --secondary: #f0f8ff;
-            --accent: #4CAF50;
-            --text: #333;
-            --light-text: #666;
+            --secondary: #f0f4f8;
+            --accent: #4a90e2;
+            --text: #333333;
+            --text-light: #666666;
             --white: #ffffff;
             --shadow: 0 4px 12px rgba(0,0,0,0.08);
             --border-radius: 8px;
@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
@@ -37,7 +37,7 @@
             padding: 0 20px;
         }
 
-        /* Header y progreso */
+        /* Header */
         header {
             background: var(--white);
             box-shadow: var(--shadow);
@@ -54,25 +54,34 @@
             padding: 15px 0;
         }
 
-        .course-info h1 {
+        .course-title h1 {
             color: var(--primary);
             font-size: 1.8rem;
             margin-bottom: 5px;
         }
 
-        .meta-info {
+        .course-meta {
             display: flex;
             gap: 20px;
-            color: var(--light-text);
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Progress Bar */
         .progress-container {
-            height: 4px;
+            position: fixed;
+            top: 60px;
+            left: 0;
             width: 100%;
-            background: #e0e0e0;
-            position: absolute;
-            bottom: 0;
+            height: 4px;
+            background: var(--secondary);
+            z-index: 999;
         }
 
         .progress-bar {
@@ -82,441 +91,541 @@
             transition: width 0.3s ease;
         }
 
-        /* Secciones principales */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: var(--white);
-            padding: 60px 0;
-            margin-bottom: 40px;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        section {
+        /* Main Content */
+        main {
             background: var(--white);
-            padding: 40px;
-            margin-bottom: 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            margin: 30px auto;
+            padding: 40px;
+            position: relative;
         }
 
-        h2 {
-            color: var(--primary);
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
-        }
-
-        h3 {
-            color: var(--primary-light);
-            margin: 25px 0 15px;
-        }
-
-        /* Objetivos */
-        .objectives-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .objective-card {
-            background: var(--secondary);
-            padding: 20px;
+        /* Objectives */
+        .objectives {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 30px;
             border-radius: var(--border-radius);
-            border-left: 4px solid var(--primary);
+            margin-bottom: 40px;
         }
 
-        /* Módulos */
-        .module {
-            background: var(--secondary);
-            padding: 25px;
+        .objectives h2 {
             margin-bottom: 20px;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .objectives ul {
+            list-style-position: inside;
+            margin-left: 10px;
+        }
+
+        .objectives li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        /* Modules */
+        .module {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .module:last-child {
+            border-bottom: none;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .module-number {
-            display: inline-block;
             background: var(--primary);
-            color: white;
-            width: 32px;
-            height: 32px;
+            color: var(--white);
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            text-align: center;
-            line-height: 32px;
-            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
 
-        /* Actividad práctica */
-        .activity {
-            background: #f8fff8;
+        .module h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .module-content {
+            padding-left: 50px;
+        }
+
+        .module-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .highlight {
+            background: #e8f1ff;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        /* Practice Activity */
+        .practice-activity {
+            background: #f9f9f9;
             border: 2px dashed var(--accent);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .practice-activity h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .activity-steps {
             margin-left: 20px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .activity-steps li {
             margin-bottom: 10px;
+            padding-left: 5px;
         }
 
         /* Quiz */
-        .quiz-question {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+        .quiz-container {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .quiz-container h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e1e8f0;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        .question p {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text);
         }
 
         .options {
-            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .option {
-            background: var(--secondary);
             padding: 12px 15px;
-            margin-bottom: 10px;
+            background: var(--white);
+            border: 2px solid #e1e8f0;
             border-radius: var(--border-radius);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
         .option:hover {
-            background: #e3f2fd;
+            border-color: var(--accent);
+            background: #f0f7ff;
         }
 
         .option.selected {
-            background: #bbdefb;
-            border-left: 4px solid var(--primary);
+            border-color: var(--accent);
+            background: #e8f1ff;
         }
 
         .option.correct {
-            background: #c8e6c9;
+            border-color: #4CAF50;
+            background: #e8f5e9;
         }
 
         .option.incorrect {
-            background: #ffcdd2;
+            border-color: #f44336;
+            background: #ffebee;
         }
 
         .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: var(--border-radius);
             text-align: center;
-            padding: 30px;
+            font-weight: 600;
             display: none;
         }
 
-        .score {
-            font-size: 3rem;
-            color: var(--primary);
-            font-weight: bold;
-            margin: 20px 0;
+        .quiz-result.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #4CAF50;
+            display: block;
         }
 
-        .btn {
+        .quiz-result.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+            display: block;
+        }
+
+        .submit-btn {
             background: var(--primary);
-            color: white;
+            color: var(--white);
             border: none;
             padding: 12px 30px;
             border-radius: var(--border-radius);
-            cursor: pointer;
             font-size: 1rem;
-            transition: background 0.3s;
+            cursor: pointer;
+            transition: background 0.3s ease;
             margin-top: 20px;
         }
 
-        .btn:hover {
+        .submit-btn:hover {
             background: var(--primary-light);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
-            color: var(--light-text);
-            border-top: 1px solid #ddd;
-            margin-top: 50px;
+            padding: 30px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                text-align: center;
+                align-items: flex-start;
                 gap: 10px;
             }
-            
-            .hero h2 {
-                font-size: 2rem;
+
+            .course-meta {
+                flex-wrap: wrap;
+                gap: 10px;
             }
-            
-            section {
-                padding: 25px;
+
+            main {
+                padding: 20px;
+                margin: 20px auto;
             }
-            
-            .objectives-grid {
-                grid-template-columns: 1fr;
+
+            .module-content {
+                padding-left: 0;
+            }
+
+            .module-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .practice-activity, .quiz-container {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container header-content">
-            <div class="course-info">
-                <h1>Power BI Intermedio</h1>
-                <div class="meta-info">
-                    <span>Nivel: Intermedio</span>
-                    <span>Duración: 1 hora</span>
+            <div class="course-title">
+                <h1>Power BI: Introducción y Uso Profesional</h1>
+                <div class="course-meta">
+                    <span class="meta-item">📊 Nivel: Intermedio</span>
+                    <span class="meta-item">⏱️ Duración: 45 minutos</span>
+                    <span class="meta-item">🎯 Público: Profesionales y Universitarios</span>
                 </div>
-            </div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
             </div>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Transforma Datos en Decisiones</h2>
-                <p>Domina técnicas avanzadas de visualización, DAX y modelado de datos para crear dashboards empresariales impactantes.</p>
+        <!-- Objectives -->
+        <section class="objectives">
+            <h2>🎯 Objetivos del Curso</h2>
+            <ul>
+                <li>Dominar la interfaz y flujo de trabajo de Power BI Desktop</li>
+                <li>Aprender a importar y transformar datos desde múltiples fuentes</li>
+                <li>Crear visualizaciones profesionales e interactivas</li>
+                <li>Implementar medidas básicas con lenguaje DAX</li>
+                <li>Publicar y compartir reportes en Power BI Service</li>
+            </ul>
+        </section>
+
+        <!-- Module 1 -->
+        <section class="module">
+            <div class="module-header">
+                <div class="module-number">1</div>
+                <h3>Interfaz de Power BI y Flujo de Trabajo</h3>
+            </div>
+            <div class="module-content">
+                <p>Power BI Desktop se organiza en tres vistas principales: <strong>Vista de Informes</strong>, <strong>Vista de Datos</strong> y <strong>Vista de Modelo</strong>. Cada vista cumple un propósito específico en el proceso de creación de business intelligence.</p>
+                
+                <div class="highlight">
+                    <strong>💡 Profesional Tip:</strong> Configura el tema oscuro en Archivo → Opciones → General para reducir fatiga visual durante sesiones prolongadas.
+                </div>
+                
+                <p>El panel de <strong>Visualizaciones</strong> (derecha) contiene todos los tipos de gráficos disponibles, mientras que el panel de <strong>Campos</strong> muestra las tablas y columnas de tu modelo de datos.</p>
             </div>
         </section>
 
-        <section id="objetivos">
-            <h2>Objetivos de Aprendizaje</h2>
-            <p>Al finalizar esta clase, serás capaz de:</p>
-            <div class="objectives-grid">
-                <div class="objective-card">
-                    <h3>Modelado Avanzado</h3>
-                    <p>Crear relaciones complejas y tablas de hechos/dimensiones optimizadas.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>DAX Intermedio</h3>
-                    <p>Utilizar funciones CALCULATE, FILTER y TIME INTELLIGENCE para análisis dinámico.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>Visualización Profesional</h3>
-                    <p>Diseñar dashboards interactivos con bookmarks y tooltips personalizados.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>Optimización</h3>
-                    <p>Mejorar rendimiento con técnicas de limpieza y compresión de datos.</p>
+        <!-- Module 2 -->
+        <section class="module">
+            <div class="module-header">
+                <div class="module-number">2</div>
+                <h3>Importación y Transformación de Datos</h3>
+            </div>
+            <div class="module-content">
+                <p>Power BI se conecta a más de 100 fuentes de datos: Excel, SQL Server, SharePoint, APIs REST, etc. El proceso de transformación se realiza en <strong>Power Query Editor</strong>.</p>
+                
+                <p>Pasos esenciales en Power Query:</p>
+                <ul style="margin-left: 20px; color: var(--text-light);">
+                    <li>Eliminar filas con valores nulos o errores</li>
+                    <li>Cambiar tipos de datos (texto, número, fecha)</li>
+                    <li>Crear columnas personalizadas con fórmulas M</li>
+                    <li>Unir tablas (merge) y agregar datos (append)</li>
+                </ul>
+                
+                <div class="highlight">
+                    <strong>⚠️ Importante:</strong> Siempre aplica transformaciones en Power Query, no en DAX. Esto optimiza el rendimiento del modelo.
                 </div>
             </div>
         </section>
 
-        <section id="modulos">
-            <h2>Módulos del Curso</h2>
-            
-            <div class="module">
-                <h3><span class="module-number">1</span> Modelado de Datos Avanzado</h3>
-                <p>Estructuración de esquemas en estrella y copo de nieve. Configuración de relaciones bidireccionales y filtrado cruzado. Creación de tablas de calendario y jerarquías personalizadas.</p>
+        <!-- Module 3 -->
+        <section class="module">
+            <div class="module-header">
+                <div class="module-number">3</div>
+                <h3>Creación de Visualizaciones Profesionales</h3>
             </div>
-            
-            <div class="module">
-                <h3><span class="module-number">2</span> DAX para Análisis Real</h3>
-                <p>Funciones de contexto: CALCULATE, ALL, FILTER. Medidas rápidas vs medidas personalizadas. Patrones comunes para KPI empresariales. Introducción a TIME INTELLIGENCE.</p>
-            </div>
-            
-            <div class="module">
-                <h3><span class="module-number">3</span> Visualizaciones Interactivas</h3>
-                <p>Selección de gráficos por tipo de dato. Uso avanzado de tooltips y drillthrough. Bookmarks para navegación profesional. Formato condicional y paletas corporativas.</p>
-            </div>
-            
-            <div class="module">
-                <h3><span class="module-number">4</span> Publicación y Colaboración</h3>
-                <p>Workspaces en Power BI Service. Configuración de actualizaciones programadas. Compartir dashboards con RLS (Row Level Security). Integración con SharePoint y Teams.</p>
+            <div class="module-content">
+                <p>Selecciona visualizaciones según el tipo de análisis:</p>
+                <ul style="margin-left: 20px; color: var(--text-light);">
+                    <li><strong>Tablas y Matrices:</strong> Para datos detallados</li>
+                    <li><strong>Gráficos de Barras/Líneas:</strong> Para tendencias y comparaciones</li>
+                    <li><strong>Mapas:</strong> Para análisis geográfico</li>
+                    <li><strong>Gauges y KPI:</strong> Para métricas de desempeño</li>
+                </ul>
+                
+                <p>Utiliza el formato para mejorar la legibilidad: ajusta colores corporativos, fuentes, títulos descriptivos y tooltips personalizados.</p>
             </div>
         </section>
 
-        <section id="actividad" class="activity">
-            <h2>Actividad Práctica</h2>
-            <p><strong>Creación de Dashboard de Ventas</strong></p>
-            <p>Implementa un dashboard interactivo con los siguientes componentes:</p>
+        <!-- Module 4 -->
+        <section class="module">
+            <div class="module-header">
+                <div class="module-number">4</div>
+                <h3>DAX Básico y Publicación de Reportes</h3>
+            </div>
+            <div class="module-content">
+                <p>DAX (Data Analysis Expressions) es el lenguaje de fórmulas de Power BI. Tres funciones esenciales para comenzar:</p>
+                
+                <div class="highlight">
+                    <strong>1. CALCULATE:</strong> Filtra cálculos en contexto específico<br>
+                    <strong>2. SUMX:</strong> Suma iterativa con lógica personalizada<br>
+                    <strong>3. RELATED:</strong> Trae datos de tablas relacionadas
+                </div>
+                
+                <p>Para publicar, haz clic en <strong>"Publicar"</strong> en la cinta de opciones. El reporte se subirá a tu workspace en Power BI Service, donde podrás configurar actualizaciones programadas, compartir con colegas y crear dashboards consolidados.</p>
+            </div>
+        </section>
+
+        <!-- Practice Activity -->
+        <section class="practice-activity">
+            <h3>📝 Actividad Práctica: Crear un Reporte de Ventas</h3>
+            <p>Sigue estos pasos para aplicar lo aprendido:</p>
             <ol class="activity-steps">
-                <li>Importa el dataset "Ventas_2024.xlsx" desde la carpeta de recursos</li>
-                <li>Establece relaciones entre tablas de ventas, productos y clientes</li>
-                <li>Crea medidas DAX para: YTD (Year-to-Date), crecimiento mensual y margen promedio</li>
-                <li>Diseña 3 visualizaciones: gráfico de líneas (tendencia), matriz por categoría y mapa de calor regional</li>
-                <li>Agrega dos bookmarks para vistas ejecutiva y detallada</li>
-                <li>Aplica formato corporativo con colores #1a3a5c y #ffffff</li>
+                <li>Importa un archivo Excel con datos de ventas (columnas: Fecha, Producto, Región, Cantidad, Valor)</li>
+                <li>En Power Query, crea una columna "Trimestre" basada en la fecha</li>
+                <li>Crea un gráfico de líneas que muestre la evolución de ventas por trimestre</li>
+                <li>Añade una tabla con ventas totales por región</li>
+                <li>Crea una medida DAX: "Ventas Promedio = AVERAGE(Ventas[Valor])"</li>
+                <li>Agrega un card visual mostrando esta medida</li>
+                <li>Aplica formato corporativo (colores, logos, fuentes)</li>
             </ol>
-            <p><em>Tiempo estimado: 25 minutos</em></p>
         </section>
 
-        <section id="quiz">
-            <h2>Evaluación de Conocimientos</h2>
+        <!-- Quiz -->
+        <section class="quiz-container">
+            <h3>🧠 Quiz de Evaluación</h3>
             
-            <div class="quiz-question" data-correct="2">
-                <p><strong>1. ¿Cuál es la función principal de CALCULATE en DAX?</strong></p>
+            <div class="question" data-correct="b">
+                <p>1. ¿Cuál es la función principal de Power Query en Power BI?</p>
                 <div class="options">
-                    <div class="option" data-value="1">Crear nuevas columnas calculadas</div>
-                    <div class="option" data-value="2">Modificar el contexto de filtro de una medida</div>
-                    <div class="option" data-value="3">Importar datos desde fuentes externas</div>
-                    <div class="option" data-value="4">Optimizar el rendimiento de las consultas</div>
+                    <div class="option" data-value="a">Crear visualizaciones interactivas</div>
+                    <div class="option" data-value="b">Importar y transformar datos</div>
+                    <div class="option" data-value="c">Escribir fórmulas DAX complejas</div>
+                    <div class="option" data-value="d">Publicar reportes en la nube</div>
                 </div>
             </div>
             
-            <div class="quiz-question" data-correct="3">
-                <p><strong>2. En un modelo estrella, ¿qué tipo de tabla contiene las métricas principales?</strong></p>
+            <div class="question" data-correct="c">
+                <p>2. ¿Qué función DAX se utiliza para realizar cálculos con filtros específicos?</p>
                 <div class="options">
-                    <div class="option" data-value="1">Tabla de dimensiones</div>
-                    <div class="option" data-value="2">Tabla de calendario</div>
-                    <div class="option" data-value="3">Tabla de hechos</div>
-                    <div class="option" data-value="4">Tabla puente</div>
+                    <div class="option" data-value="a">SUM</div>
+                    <div class="option" data-value="b">RELATED</div>
+                    <div class="option" data-value="c">CALCULATE</div>
+                    <div class="option" data-value="d">COUNTROWS</div>
                 </div>
             </div>
             
-            <div class="quiz-question" data-correct="4">
-                <p><strong>3. ¿Qué técnica permite mostrar diferentes vistas en un mismo reporte?</strong></p>
+            <div class="question" data-correct="d">
+                <p>3. ¿Dónde se publican los reportes para compartirlos con otros usuarios?</p>
                 <div class="options">
-                    <div class="option" data-value="1">Drillthrough</div>
-                    <div class="option" data-value="2">Tooltips personalizados</div>
-                    <div class="option" data-value="3">Formato condicional</div>
-                    <div class="option" data-value="4">Bookmarks</div>
+                    <div class="option" data-value="a">Power BI Mobile</div>
+                    <div class="option" data-value="b">Power Query Editor</div>
+                    <div class="option" data-value="c">Excel Online</div>
+                    <div class="option" data-value="d">Power BI Service</div>
                 </div>
             </div>
             
-            <div class="quiz-question" data-correct="1">
-                <p><strong>4. RLS (Row Level Security) se utiliza principalmente para:</strong></p>
+            <div class="question" data-correct="a">
+                <p>4. ¿Cuál es la mejor práctica para transformaciones de datos?</p>
                 <div class="options">
-                    <div class="option" data-value="1">Restringir acceso a filas específicas según el usuario</div>
-                    <div class="option" data-value="2">Mejorar la velocidad de carga de los datos</div>
-                    <div class="option" data-value="3">Automatizar la actualización de datasets</div>
-                    <div class="option" data-value="4">Validar la calidad de los datos importados</div>
+                    <div class="option" data-value="a">Realizarlas en Power Query, no en DAX</div>
+                    <div class="option" data-value="b">Usar siempre fórmulas DAX complejas</div>
+                    <div class="option" data-value="c">Transformar datos directamente en Excel</div>
+                    <div class="option" data-value="d">Evitar cualquier transformación</div>
                 </div>
             </div>
             
-            <button class="btn" id="submitQuiz">Verificar Respuestas</button>
-            
-            <div class="quiz-result" id="quizResult">
-                <h3>Resultado del Quiz</h3>
-                <div class="score" id="score">0/4</div>
-                <p id="resultMessage"></p>
-                <button class="btn" id="retryQuiz">Intentar Nuevamente</button>
-            </div>
+            <button class="submit-btn" id="submitQuiz">Enviar Respuestas</button>
+            <div class="quiz-result" id="quizResult"></div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Curso de Power BI Intermedio. Todos los derechos reservados.</p>
-        <p><strong>Johan Tapia, PhD</strong></p>
+    <!-- Footer -->
+    <footer class="container">
+        <p>© 2024 Curso de Power BI - Todos los derechos reservados</p>
+        <p><strong>Johan Tapia, PhD</strong> - Experto en Business Intelligence y Análisis de Datos</p>
     </footer>
 
     <script>
-        // Barra de progreso
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
+        // Progress Bar
+        window.addEventListener('scroll', updateProgressBar);
+        
+        function updateProgressBar() {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / (docHeight - winHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+
+        // Quiz Logic
+        document.getElementById('submitQuiz').addEventListener('click', function() {
+            const questions = document.querySelectorAll('.question');
+            let correctAnswers = 0;
+            let totalQuestions = questions.length;
+            let allAnswered = true;
+
+            // Reset previous results
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect', 'selected');
+            });
+
+            // Check each question
+            questions.forEach(question => {
+                const correctAnswer = question.getAttribute('data-correct');
+                const selectedOption = question.querySelector('.option.selected');
+                
+                if (!selectedOption) {
+                    allAnswered = false;
+                    return;
+                }
+
+                const userAnswer = selectedOption.getAttribute('data-value');
+                
+                // Mark correct answer
+                question.querySelectorAll('.option').forEach(opt => {
+                    if (opt.getAttribute('data-value') === correctAnswer) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                // Mark user's answer
+                if (userAnswer === correctAnswer) {
+                    selectedOption.classList.add('correct');
+                    correctAnswers++;
+                } else {
+                    selectedOption.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultElement = document.getElementById('quizResult');
+            if (!allAnswered) {
+                resultElement.textContent = '⚠️ Por favor, responde todas las preguntas.';
+                resultElement.className = 'quiz-result error';
+                return;
+            }
+
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            let message = '';
+            
+            if (percentage === 100) {
+                message = `🎉 ¡Excelente! ${correctAnswers}/${totalQuestions} correctas (${percentage}%)`;
+                resultElement.className = 'quiz-result success';
+            } else if (percentage >= 70) {
+                message = `👍 Buen trabajo: ${correctAnswers}/${totalQuestions} correctas (${percentage}%)`;
+                resultElement.className = 'quiz-result success';
+            } else {
+                message = `📚 Revisa el material: ${correctAnswers}/${totalQuestions} correctas (${percentage}%)`;
+                resultElement.className = 'quiz-result error';
+            }
+            
+            resultElement.textContent = message;
+            
+            // Scroll to results
+            resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
 
-        // Quiz interactivo
-        document.addEventListener('DOMContentLoaded', () => {
-            const options = document.querySelectorAll('.option');
-            const submitBtn = document.getElementById('submitQuiz');
-            const retryBtn = document.getElementById('retryQuiz');
-            const quizResult = document.getElementById('quizResult');
-            const scoreElement = document.getElementById('score');
-            const resultMessage = document.getElementById('resultMessage');
-            
-            let selectedAnswers = {};
-            
-            // Seleccionar opciones
-            options.forEach(option => {
-                option.addEventListener('click', function() {
-                    const question = this.closest('.quiz-question');
-                    const questionId = Array.from(question.parentElement.children).indexOf(question);
-                    
-                    // Remover selección previa en esta pregunta
-                    question.querySelectorAll('.option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    
-                    // Marcar selección actual
-                    this.classList.add('selected');
-                    selectedAnswers[questionId] = this.getAttribute('data-value');
+        // Option selection
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const question = this.closest('.question');
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
                 });
-            });
-            
-            // Verificar respuestas
-            submitBtn.addEventListener('click', () => {
-                const questions = document.querySelectorAll('.quiz-question');
-                let correctCount = 0;
-                
-                questions.forEach((question, index) => {
-                    const correctAnswer = question.getAttribute('data-correct');
-                    const selectedAnswer = selectedAnswers[index];
-                    
-                    // Remover clases previas
-                    question.querySelectorAll('.option').forEach(opt => {
-                        opt.classList.remove('correct', 'incorrect');
-                    });
-                    
-                    // Marcar respuestas correctas/incorrectas
-                    if (selectedAnswer) {
-                        const selectedOption = question.querySelector(`.option[data-value="${selectedAnswer}"]`);
-                        
-                        if (selectedAnswer === correctAnswer) {
-                            selectedOption.classList.add('correct');
-                            correctCount++;
-                        } else {
-                            selectedOption.classList.add('incorrect');
-                        }
-                    }
-                    
-                    // Marcar la respuesta correcta siempre
-                    const correctOption = question.querySelector(`.option[data-value="${correctAnswer}"]`);
-                    correctOption.classList.add('correct');
-                });
-                
-                // Mostrar resultados
-                scoreElement.textContent = `${correctCount}/${questions.length}`;
-                
-                if (correctCount === questions.length) {
-                    resultMessage.textContent = '¡Excelente! Dominas los conceptos intermedios de Power BI.';
-                } else if (correctCount >= 2) {
-                    resultMessage.textContent = 'Buen trabajo, pero revisa los temas donde tuviste dificultades.';
-                } else {
-                    resultMessage.textContent = 'Recomendamos repasar los módulos antes de continuar.';
-                }
-                
-                quizResult.style.display = 'block';
-                quizResult.scrollIntoView({ behavior: 'smooth' });
-            });
-            
-            // Reintentar quiz
-            retryBtn.addEventListener('click', () => {
-                selectedAnswers = {};
-                quizResult.style.display = 'none';
-                
-                document.querySelectorAll('.option').forEach(opt => {
-                    opt.classList.remove('selected', 'correct', 'incorrect');
-                });
-                
-                window.scrollTo({
-                    top: document.getElementById('quiz').offsetTop - 100,
-                    behavior: 'smooth'
-                });
+                this.classList.add('selected');
             });
         });
+
+        // Initialize progress bar
+        updateProgressBar();
     </script>
 </body>
 </html>
